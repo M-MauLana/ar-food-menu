@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AR Viewer</title>
+</head>
+<body>
+  <header>
+    <h1>AR Viewer</h1>
+    <p>See your selected dish in Augmented Reality!</p>
+  </header>
+
+  <main>
+    <model-viewer 
+      id="ar-model" 
+      src="" 
+      alt="3D Food Model" 
+      ar 
+      ar-modes="webxr quick-look scene-viewer" 
+      environment-image="neutral" 
+      auto-rotate 
+      camera-controls>
+    </model-viewer>
+
+    <p><strong>Tip:</strong> Rotate or zoom in to get a closer look at your favorite dish!</p>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 AR Food Menu. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Get model from URL and load the appropriate AR model
+    const urlParams = new URLSearchParams(window.location.search);
+    const model = urlParams.get('model');
+    document.getElementById('ar-model').setAttribute('src', `./public/models/${model}`);
+  </script>
+
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</body>
+</html>
